@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Rentalkendaraan2.Models.Pengembalian>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Tanggal Pembelian")
+            </th>
+            <th>
+                @Html.DisplayName("Denda")
+            </th>
+            <th>
+                @Html.DisplayName("ID Kondisi")
+            </th>
+            <th>
+                @Html.DisplayName("ID Peminjaman")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TglPengembalian)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Denda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdKondisiNavigation.IdKondisi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPeminjamanNavigation.IdPeminjaman)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPengembalian"><i class="fa fa-marker fa-lg"></i></a> |
+                <a asp-action="Details" asp-route-id="@item.IdPengembalian"><i class="fas fa-list"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPengembalian"><i class="fa fa-trash-alt fa-l"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
